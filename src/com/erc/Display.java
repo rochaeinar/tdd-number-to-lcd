@@ -19,7 +19,7 @@ public class Display {
 
     public String getStringRepresentation() {
 
-        StringBuffer[] lines = {new StringBuffer(), new StringBuffer(), new StringBuffer()};
+        StringBuffer[] lines = getBuffersLines();
 
         for (LcdNumber lcdNumber : lcdNumbers) {
             int currentLine = 0;
@@ -27,12 +27,34 @@ public class Display {
                 for (String led : line) {
                     lines[currentLine].append(led);
                 }
+                lines[currentLine].append("   ");
                 currentLine++;
             }
         }
 
-        return lines[0].toString() + "\n" +
-                lines[1].toString() + "\n" +
-                lines[2].toString() + "\n";
+        return joinBufferLines(lines);
+    }
+
+    private String joinBufferLines(StringBuffer[] lines) {
+        StringBuilder stringRepresentation = new StringBuilder();
+        for (StringBuffer line : lines) {
+            stringRepresentation.append(line.toString());
+            stringRepresentation.append("\n");
+        }
+        return stringRepresentation.toString();
+    }
+
+    private StringBuffer[] getBuffersLines() {
+
+        int totalHeight = 0;
+        if (this.lcdNumbers.size() > 0) {
+            totalHeight = this.lcdNumbers.get(0).getTotalHeight();
+        }
+        StringBuffer[] lines = new StringBuffer[totalHeight];
+
+        for (int i = 0; i < totalHeight; i++) {
+            lines[i] = new StringBuffer();
+        }
+        return lines;
     }
 }

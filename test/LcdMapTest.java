@@ -19,13 +19,13 @@ public class LcdMapTest {
 
     @Test
     public void getOneNumberMapTest_success() {
-        int[] lcdUnmarked = new int[]{0, 1, 3, 4, 6, 7};
+        int[] lcdUnmarked = new int[]{1, 2, 4, 5, 7};
         assert Arrays.equals(LcdMap.getMap(1), lcdUnmarked);
     }
 
     @Test
     public void getSevenNumberMapTest_success() {
-        int[] lcdUnmarked = new int[]{0, 3, 4, 6, 7};
+        int[] lcdUnmarked = new int[]{2, 4, 5, 7};
         assert Arrays.equals(LcdMap.getMap(7), lcdUnmarked);
     }
 
